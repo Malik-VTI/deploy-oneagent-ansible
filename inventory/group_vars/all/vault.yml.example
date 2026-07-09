@@ -1,0 +1,23 @@
+---
+# =====================================================================
+# SECRETS TEMPLATE — copy to vault.yml, fill in, then ENCRYPT.
+#
+#   cp inventory/group_vars/all/vault.yml.example inventory/group_vars/all/vault.yml
+#   ansible-vault encrypt inventory/group_vars/all/vault.yml
+#
+# Edit later with:  ansible-vault edit inventory/group_vars/all/vault.yml
+# (vault.yml is git-ignored — never commit the decrypted file.)
+# =====================================================================
+
+# --- Dynatrace environment URL ---------------------------------------
+# Managed: https://<cluster-host>:9999/e/<environment-id>
+# SaaS:    https://<environment-id>.live.dynatrace.com
+vault_oneagent_environment_url: "https://<cluster-host>:9999/e/<environment-id>"
+
+# --- PaaS token (NOT an API token!) ----------------------------------
+# Generate: Dynatrace > Deploy Dynatrace > Set up PaaS integration > Create token
+# Format:   dt0c01.XXXX.YYYY   (scope: InstallerDownload)
+vault_oneagent_paas_token: "dt0c01.CHANGEME.CHANGEME"
+
+# --- Windows WinRM password (only if deploying to Windows) -----------
+# vault_windows_password: "CHANGEME"

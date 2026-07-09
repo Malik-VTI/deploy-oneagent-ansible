@@ -1,0 +1,5 @@
+# Python dependencies for the Ansible CONTROL NODE (Linux / WSL / macOS).
+# Install with:  pip install -r requirements-python.txt
+ansible-core>=2.15
+# Windows (WinRM) targets only:
+pywinrm>=0.4.3

@@ -1,0 +1,9 @@
+---
+- name: Uninstall Dynatrace OneAgent
+  hosts: all
+  gather_facts: true
+  vars:
+    # 'absent' tells the role to uninstall OneAgent.
+    oneagent_package_state: absent
+  roles:
+    - role: dynatrace.oneagent.oneagent

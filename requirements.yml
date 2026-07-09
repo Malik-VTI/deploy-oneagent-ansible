@@ -1,0 +1,12 @@
+---
+# Ansible collection dependencies.
+# Install (into ./collections):
+#   ansible-galaxy collection install -r requirements.yml -p ./collections
+collections:
+  - name: dynatrace.oneagent
+    # Pin for reproducibility, e.g. version: "1.7.0".
+    # Omit the version to always fetch the latest published release.
+
+  # Needed ONLY for Windows targets (WinRM modules used by the role):
+  - name: ansible.windows
+  - name: community.windows

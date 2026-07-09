@@ -1,0 +1,9 @@
+---
+# Connection settings for Windows targets (WinRM).
+# Requires 'pip install pywinrm' on the control node.
+ansible_connection: winrm
+ansible_port: 5986
+ansible_user: Administrator                     # CHANGE ME
+ansible_password: "{{ vault_windows_password }}"
+ansible_winrm_transport: ntlm                   # ntlm | kerberos | credssp | basic
+ansible_winrm_server_cert_validation: ignore    # lab only; use 'validate' in prod

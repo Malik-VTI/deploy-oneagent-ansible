@@ -1,0 +1,23 @@
+# --- Secrets: never commit the decrypted vault or the vault password ---
+inventory/group_vars/all/vault.yml
+.vault_pass
+.vault_pass.txt
+*.vault
+
+# --- Installed collections (restore via requirements.yml) ---
+collections/
+
+# --- Pre-downloaded installers (air-gapped) ---
+files/*.sh
+files/*.exe
+files/*.msi
+
+# --- Ansible / runtime artifacts ---
+*.retry
+*.log
+fact_cache/
+
+# --- Editor / OS ---
+.DS_Store
+.idea/
+.vscode/

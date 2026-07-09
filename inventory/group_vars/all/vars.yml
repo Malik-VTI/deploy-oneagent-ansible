@@ -1,0 +1,44 @@
+---
+# =====================================================================
+# Dynatrace OneAgent — shared (non-secret) role variables
+# Reference:
+#   https://github.com/Dynatrace/Dynatrace-OneAgent-Ansible/blob/master/roles/oneagent/README.md
+#   https://docs.dynatrace.com/docs/shortlink/oneagent-installation-parameters
+# =====================================================================
+
+# Secrets live in vault.yml (encrypted). We only *reference* them here so
+# it is obvious which values are sensitive (prefix: vault_).
+oneagent_environment_url: "{{ vault_oneagent_environment_url }}"
+oneagent_paas_token: "{{ vault_oneagent_paas_token }}"
+
+# OneAgent version: 'latest' or a pinned build like '1.301.45.20250115-123456'.
+oneagent_version: latest
+
+# Verify the installer signature (Linux/AIX only).
+oneagent_verify_signature: true
+
+# Never reboot target hosts automatically.
+oneagent_reboot_host: false
+
+# Keep Ansible from printing sensitive task output.
+oneagent_no_log: true
+
+# Installer download directory on the target host.
+# Must NOT contain spaces on Linux/AIX. Leave commented for OS defaults.
+# oneagent_download_dir: /tmp/dynatrace
+
+# AIR-GAPPED option: use a pre-downloaded installer on the control node
+# instead of downloading from the Dynatrace cluster on each target.
+# oneagent_local_installer: files/Dynatrace-OneAgent-Linux.sh
+
+# ---------------------------------------------------------------------
+# OneAgent installer parameters (passed straight to the installer).
+# Adjust the host group / host properties to match your environment.
+# ---------------------------------------------------------------------
+oneagent_install_args:
+  - --set-host-group=DT_ANSIBLE_DEMO      # CHANGE ME (logical host group)
+  - --set-infra-only=false                # full-stack (true = infra-only)
+  - --set-app-log-content-access=true
+  # - --set-host-property=environment=production
+  # - --set-host-property=managed-by=ansible
+  # - --set-network-zone=default

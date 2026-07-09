@@ -1,6 +1,8 @@
 ---
 - name: Uninstall Dynatrace OneAgent
   hosts: all
+  vars_files:
+  - vault.yml
   gather_facts: true
   vars:
     # 'absent' tells the role to uninstall OneAgent.

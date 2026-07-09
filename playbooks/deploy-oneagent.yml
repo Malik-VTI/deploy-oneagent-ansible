@@ -1,6 +1,8 @@
 ---
 - name: Deploy Dynatrace OneAgent
   hosts: all
+  vars_files:
+  - vault.yml
   gather_facts: true
   # 'become' is set per-OS in group_vars (linux.yml -> become: true).
   # Windows uses WinRM and does not need sudo-style become.

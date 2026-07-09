@@ -1,0 +1,6 @@
+---
+# Applies to every host in the `infra_only` inventory group.
+# Overrides the full-stack default from group_vars/all/vars.yml.
+# Effect: OneAgent is installed with --set-infra-only=true
+# (host + log monitoring only, no deep/code-level monitoring).
+oneagent_infra_only: true

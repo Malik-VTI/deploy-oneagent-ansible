@@ -32,12 +32,22 @@ oneagent_no_log: true
 # oneagent_local_installer: files/Dynatrace-OneAgent-Linux.sh
 
 # ---------------------------------------------------------------------
+# Deployment mode (full-stack vs infra-only) — DEFAULT for all hosts.
+#   false = full-stack  (deep monitoring: code-level, services, traces)
+#   true  = infra-only  (host metrics + logs only, no deep monitoring)
+# This default is overridden per group in group_vars/infra_only.yml, so a
+# host only needs to join the `infra_only` group to switch modes.
+oneagent_infra_only: false
+
+# ---------------------------------------------------------------------
 # OneAgent installer parameters (passed straight to the installer).
 # Adjust the host group / host properties to match your environment.
+# NOTE: --set-infra-only reads the variable above, so it resolves
+#       per-host at runtime (do NOT hardcode true/false here).
 # ---------------------------------------------------------------------
 oneagent_install_args:
   - --set-host-group=DT_ANSIBLE_DEMO      # CHANGE ME (logical host group)
-  - --set-infra-only=false                # full-stack (true = infra-only)
+  - --set-infra-only={{ oneagent_infra_only | ternary('true', 'false') }}
   - --set-app-log-content-access=true
   # - --set-host-property=environment=production
   # - --set-host-property=managed-by=ansible
